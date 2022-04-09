@@ -1,0 +1,21 @@
+table, th, td {
+    border: 2px solid white;
+    border-collapse: collapse;
+    color: white;
+    width:50%;
+    margin-top: 200px;
+    text-align: center;
+   padding: 10px;
+   margin-left: 449px; 
+  }
+  th, td {
+    background-color: rgba(0,0,0,0.5),;
+  }
+  thead{
+      background-color: #343a40 ;
+  }
+  h1{
+    text-align: center;
+    margin-top: 50px;
+    color: white;
+  }

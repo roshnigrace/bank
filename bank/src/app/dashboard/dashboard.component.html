@@ -1,0 +1,164 @@
+<nav class="navbar navbar-light bg-dark">
+  <a class="navbar-brand" href="#" style="color: rgb(85, 98, 237)"
+    ><b>&#169; HAFC Bank Pvt.Ltd </b></a
+  >
+  <span class="quote text-light">Giving you freedom...</span>
+</nav>
+<h1 style="color: white;">Welcome {{user}} </h1>
+<!-- pipe -->
+<p style="color:white">Login Details: {{lDate | date : 'short'}}</p>                     
+<button style="float: right; margin-top: 10px; margin-right: 10px;" (click)="logout()" class="btn float-right login_btn">log out</button>
+<!-- transaction link -->
+<a routerLink="/transaction">Transaction History</a>
+<button style="float: right; margin-top: 10px; margin-right: 10px;" (click)="deleteAccount()" class="btn btn-danger">Delete My Account</button>
+
+<hr>
+<!-- child prop bind -->
+<app-delete-confirm (onCancel)="cancel()" (onDelete)="delete($event)"  [item]="acno"></app-delete-confirm>       
+<!-- deposite -->
+<div [ngClass]="acno? 'style1' :''"   class="container col-md-8 mt-0">
+  <div class="d-flex justify-content-center h-100">
+  <div class="card">
+      <div class="card-header">
+        <!-- highlighter -->
+        <h3 appDirective class="text-center">Deposit Form</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="depositeForm" (ngSubmit)="deposit()">
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="acno"
+              name="acno"
+              placeholder="enter account number"
+              id="login_accno"
+              required
+            />
+          </div>
+          <div style="color: red;  " *ngIf="(this.depositeForm.get('acno')?.touched||this.depositeForm.get('acno')?.dirty)&&this.depositeForm.get('acno')?.errors">Invalid account number</div>
+
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="pwd"
+              name="pwd"
+              placeholder="password"
+              id="login_password"
+              required
+            />
+          </div>
+          <div style="color: red;  " *ngIf="(this.depositeForm.get('pwd')?.touched||this.depositeForm.get('pwd')?.dirty)&&this.depositeForm.get('pwd')?.errors">Invalid password</div>
+
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="amount"
+              name="amount"
+              placeholder="amount"
+              id="amt"
+              required
+            />
+          </div>
+          <div style="color: red;  " *ngIf="(this.depositeForm.get('amount')?.touched||this.depositeForm.get('amount')?.dirty)&&this.depositeForm.get('amount')?.errors">Invalid amount</div>
+ 
+          <div class="form-group">
+            <!-- <input type="submit" value="Register" (click)="register()" class="btn float-right login_btn " style="width:50%" > -->
+            <input
+              type="submit"
+              value="Deposit"
+              class="btn float-right login_btn"
+              style="width: 50%"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+</div>
+
+<!-- withdraw -->
+<div  [ngClass]="acno? 'style1' :''"   class="container col-md-12 mt-0">            
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3 appDirective  class="text-center">Withdraw Form</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="withdrawForm" (ngSubmit)="withdraw()">
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="acno1"
+              name="acno1"
+              placeholder="enter account number"
+              id="login_accno1"
+              required
+            />
+          </div>
+          <div style="color: red;  " *ngIf="(this.withdrawForm.get('acno1')?.touched||this.withdrawForm.get('acno1')?.dirty)&&this.withdrawForm.get('acno1')?.errors">Invalid account number</div>
+
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="pwd1"
+              name="pwd1"
+              placeholder="password"
+              id="login_password1"
+              required
+            />
+          </div>
+          <div style="color: red;  " *ngIf="(this.withdrawForm.get('pwd1')?.touched||this.withdrawForm.get('pwd1')?.dirty)&&this.withdrawForm.get('pwd1')?.errors">Invalid password</div>
+
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="amount1"
+              name="amount1"
+              placeholder="amount"
+              id="amt1"
+              required
+            />
+          </div>
+          <div style="color: red;  " *ngIf="(this.withdrawForm.get('amount1')?.touched||this.withdrawForm.get('amount1')?.dirty)&&this.withdrawForm.get('amount1')?.errors">Invalid amount</div>
+
+          <div class="form-group">
+            <!-- <input type="submit" value="Register" (click)="register()" class="btn float-right login_btn " style="width:50%" > -->
+            <input
+              type="submit"
+              value="Withdraw"
+              class="btn float-right login_btn"
+              style="width: 50%"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- animation demo -->
+<app-animation-demo></app-animation-demo>
+
